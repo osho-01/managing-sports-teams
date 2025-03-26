@@ -2,13 +2,14 @@ import type React from "react"
 import "@/app/globals.css"
 import { Inter } from "next/font/google"
 import { ThemeProvider } from "@/components/theme-provider"
-import { Toaster } from "@/components/ui/toaster"
+import { Toaster } from "sonner"
+import Header from "@/components/header"
 
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata = {
-  title: "Team Manager",
-  description: "A comprehensive sports team management application",
+  title: "Sports Team Management",
+  description: "Manage your sports teams efficiently",
     generator: 'v0.dev'
 }
 
@@ -18,11 +19,12 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className="h-full">
-      <body className={`${inter.className} flex min-h-screen flex-col`}>
+    <html lang="en">
+      <body className={inter.className}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
-          {children}
-          <Toaster />
+          <Header />
+          <main className="container mx-auto px-4 py-6 max-w-5xl">{children}</main>
+          <Toaster position="top-center" />
         </ThemeProvider>
       </body>
     </html>
