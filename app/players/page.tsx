@@ -1,30 +1,25 @@
 "use client"
-
-import { useState } from "react"
-import { Button } from "@/components/ui/button"
-import { PlusCircle } from "lucide-react"
-import { PlayersList } from "@/components/players-list"
-import { AddPlayerDialog } from "@/components/add-player-dialog"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import TeamRoster from "@/components/team-roster"
+import { SiteHeader } from "@/components/site-header"
 
 export default function PlayersPage() {
-  const [isAddPlayerOpen, setIsAddPlayerOpen] = useState(false)
-
   return (
-    <div className="space-y-6">
-      <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
-        <div>
-          <h1 className="text-2xl font-bold tracking-tight">Players</h1>
-          <p className="text-muted-foreground">Manage your team roster and player information.</p>
+    <div className="flex min-h-screen flex-col">
+      <SiteHeader />
+      <main className="flex-1">
+        <div className="container py-4 md:py-6">
+          <Card>
+            <CardHeader>
+              <CardTitle>Team Roster</CardTitle>
+              <CardDescription>Manage your team's players and their information.</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <TeamRoster />
+            </CardContent>
+          </Card>
         </div>
-        <Button onClick={() => setIsAddPlayerOpen(true)}>
-          <PlusCircle className="mr-2 h-4 w-4" />
-          Add Player
-        </Button>
-      </div>
-
-      <PlayersList />
-
-      <AddPlayerDialog open={isAddPlayerOpen} onOpenChange={setIsAddPlayerOpen} />
+      </main>
     </div>
   )
 }
